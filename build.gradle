@@ -1,3 +1,4 @@
+
 plugins {
     id 'net.fabricmc.fabric-loom' version "${loom_version}"
     id 'maven-publish'
@@ -27,9 +28,9 @@ repositories {
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
 
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    modImplementation "net.fabricmc:fabric-api:fabric-api:${project.fabric_version}"
-    modImplementation "maven.modrinth:mOgUt4GM:iRo7AZXf"
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    implementation "maven.modrinth:mOgUt4GM:iRo7AZXf"
 }
 
 processResources {
@@ -41,7 +42,7 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-    it.options.release = 25
+    options.release = 25
 }
 
 java {
