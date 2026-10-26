@@ -1,0 +1,48 @@
+
+name: Prismium 26.2 Build
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect-and-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Prismium 26.2
+        uses: actions/checkout@v6
+
+      - name: Show repository files
+        run: |
+          echo "Repository contents:"
+          ls -la
+          echo "Git branches and commit:"
+          git log -1 --oneline || true
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Check Gradle wrapper
+        run: |
+          if [ -f gradlew ]; then
+            chmod +x gradlew
+            ./gradlew build --no-daemon
+          else
+            echo "ERROR: gradlew not found."
+            echo "Source files must be copied into this repository first."
+            exit 1
+          fi
+
+      - name: Upload build output
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Prismium-26.2
+          path: build/libs/*.jar
+          if-no-files-found: error
