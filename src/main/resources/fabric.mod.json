@@ -23,11 +23,11 @@
   "mixins": [
     "prismium.mixins.json"
   ],
-  "depends": {
-    "fabricloader": ">=0.16.14",
-    "minecraft": "~1.21.11",
-    "fabric-api": "*",
-    "modmenu": "*"
-  },
-  "icon": "assets/prismium/icon.png"
+"depends": {
+  "fabricloader": ">=0.19.0",
+  "minecraft": "~26.2",
+  "fabric-api": "*",
+  "modmenu": "*"
+},
+"icon": "assets/prismium/icon.png"
 }
